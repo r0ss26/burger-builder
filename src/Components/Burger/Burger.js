@@ -5,15 +5,19 @@ import classes from './Burger.module.css';
 
 const Burger = (props) => {
 
-   const totalIngredientsArray = Object.keys(props.ingredients).map((ingredient) => {
+   let totalIngredientsArray = Object.keys(props.ingredients).map((ingredient) => {
       return [...Array(props.ingredients[ingredient])].map((_, i) => <BurgerIngredient key={ingredient + i} type={ingredient}/>)
-   })
+   }).reduce((arr, el) => arr.concat(el), [])
 
-   console.log(totalIngredientsArray)
+   if (!totalIngredientsArray.length) {
+     totalIngredientsArray = <p>Please start adding ingredients!</p>
+   }
 
   return (
     <div className={classes.Burger}>
+      <BurgerIngredient type="bread-top" />
       {totalIngredientsArray}
+      <BurgerIngredient type="bread-bottom" />
     </div>    
   )
 }
