@@ -8,26 +8,39 @@ class BurgerBuilder extends Component {
       salad: 0,
       bacon: 0,
       cheese: 0,
-      meat: 0
+      meat: 0,
     },
   };
 
-  handleIngredientUpdated = (ingredient, action) => {
-    console.log('clicked');
-    this.setState((prevState) => {
-      return {
-        ...prevState,
-        ingredient: action === 'decrement' ? prevState[ingredient]-- : prevState[ingredient]++
-      }
-    })
-  }
-
+  handleIngredientUpdated = ingredient => {
+    return action => {
+      this.setState(prevState => {
+        if (
+          action === 'decrement' &&
+          prevState.ingredients[ingredient] === 0
+        )
+          return prevState;
+          
+        return {
+          ...prevState,
+          ingredients: {
+            ...prevState.ingredients,
+            [ingredient]:
+              action === 'decrement'
+                ? prevState.ingredients[ingredient]--
+                : prevState.ingredients[ingredient]++,
+          },
+        };
+      });
+      console.log(ingredient, this.state);
+    };
+  };
 
   render() {
     return (
       <>
-        <Burger ingredients={this.state.ingredients}/>
-        <BuildControls ingredientUpdated={this.handleIngredientUpdated}/>
+        <Burger ingredients={this.state.ingredients} />
+        <BuildControls ingredientUpdated={this.handleIngredientUpdated} />
       </>
     );
   }
