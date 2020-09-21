@@ -22,6 +22,11 @@ class BurgerBuilder extends Component {
     },
     totalPrice: 4,
     purchaseable: false,
+    purchasing: false
+  };
+
+  toggleModal = () => {
+    this.setState({purchasing: !this.state.purchasing})
   };
 
   updatePurchaseState = () => {
@@ -70,11 +75,12 @@ class BurgerBuilder extends Component {
 
     return (
       <>
-        <Modal>
+        <Modal toggleModal={this.toggleModal} show={this.state.purchasing}>
           <OrderSummary ingredients={this.state.ingredients}/>
         </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls
+          onOrder={this.toggleModal}
           purchaseable={this.state.purchaseable}
           price={this.state.totalPrice}
           disabled={disabledInfo}
