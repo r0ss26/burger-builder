@@ -1,4 +1,5 @@
 import React from 'react';
+import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
 
 import Toolbar from '../Navigation/Toolbar/Toolbar';
 
@@ -8,6 +9,7 @@ const Layout = (props) => {
   return (
     <>
       <Toolbar />
+      <SideDrawer />
       <main className={classes.Content}>
         {props.children}
       </main>
