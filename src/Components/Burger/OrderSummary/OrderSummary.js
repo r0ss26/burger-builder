@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Button from '../../UI/Button/Button';
 
@@ -30,5 +31,12 @@ const OrderSummary = props => {
     </>
   );
 };
+
+OrderSummary.propTypes = {
+  price: PropTypes.number,
+  onPurchaseCancelled: PropTypes.func,
+  onPurchaseContinued: PropTypes.func,
+  ingredients: PropTypes.objectOf(PropTypes.number)
+}
 
 export default OrderSummary;

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Backdrop from '../Backdrop/Backdrop';
 import classes from './Modal.module.css';
 
@@ -18,5 +20,10 @@ const Modal = props => {
     </>
   );
 };
+
+Modal.propTypes = {
+  show: PropTypes.bool,
+  toggleModal: PropTypes.func
+}
 
 export default Modal;

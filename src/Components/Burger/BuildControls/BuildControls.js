@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import classes from './BuildControls.module.css';
 import BuildControl from './BuildControl/BuildControl';
 
@@ -18,7 +20,7 @@ const BuildControls = props => {
       {controls.map(control => (
         <BuildControl
           disabled={props.disabled[control.type]}
-          ingredientUpdated={props.ingredientUpdated(control.type)}
+          onIngredientUpdated={props.onIngredientUpdated(control.type)}
           key={control.label}
           label={control.label}
         />
@@ -29,5 +31,13 @@ const BuildControls = props => {
     </div>
   );
 };
+
+BuildControls.propTypes = {
+  onOrder: PropTypes.func,
+  purchaseable: PropTypes.bool,
+  price: PropTypes.number,
+  disabled: PropTypes.objectOf(PropTypes.bool),
+  ingredientUpdated: PropTypes.func
+}
 
 export default BuildControls;

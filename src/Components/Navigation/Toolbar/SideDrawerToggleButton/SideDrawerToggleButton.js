@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 import classes from './SideDrawerToggleButton.module.css'
 
@@ -10,6 +11,10 @@ const SideDrawerToggleButton = (props) => {
       <span></span>
     </div>
   )
+}
+
+SideDrawerToggleButton.propTypes = {
+  onClick: PropTypes.func
 }
 
 export default SideDrawerToggleButton

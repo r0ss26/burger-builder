@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import classes from './Toolbar.module.css';
 import Logo from '../../Logo/Logo';
@@ -18,5 +19,9 @@ const Toolbar = props => {
     </header>
   );
 };
+
+Toolbar.propTypes = {
+  onSideDrawerToggle: PropTypes.func
+}
 
 export default Toolbar;

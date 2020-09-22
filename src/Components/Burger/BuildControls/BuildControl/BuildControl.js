@@ -6,14 +6,14 @@ const BuildControl = props => {
     <div className={classes.BuildControl}>
       <div className={classes.Label}>{props.label}</div>
       <button
-        onClick={() => props.ingredientUpdated('decrement')}
+        onClick={() => props.onIngredientUpdated('decrement')}
         className={classes.Less}
         disabled={props.disabled}
         >
         Less
       </button>
       <button
-        onClick={() => props.ingredientUpdated('increment')}
+        onClick={() => props.onIngredientUpdated('increment')}
         className={classes.More}>
         More
       </button>
