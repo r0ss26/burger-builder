@@ -6,7 +6,7 @@ const Modal = props => {
 
   return (
     <>
-      <Backdrop onModalClosed={props.toggleModal} show={props.show}/>
+      <Backdrop onClick={props.toggleModal} show={props.show}/>
       <div
         style={{
           transform: props.show ? 'translateY(0)' : 'translateY(-100vh)',

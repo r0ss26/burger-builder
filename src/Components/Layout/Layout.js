@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
 
 import Toolbar from '../Navigation/Toolbar/Toolbar';
@@ -6,10 +6,16 @@ import Toolbar from '../Navigation/Toolbar/Toolbar';
 import classes from './Layout.module.css';
 
 const Layout = (props) => {
+  const [sideDrawerOpen, setSideDrawerOpen] = useState(false);  
+
+  const handleToggleSideDrawer = () => {
+    setSideDrawerOpen(!sideDrawerOpen)
+  }
+
   return (
     <>
-      <Toolbar />
-      <SideDrawer />
+      <Toolbar onSideDrawerToggle={handleToggleSideDrawer}/>
+      <SideDrawer showSideDrawer={sideDrawerOpen} onSideDrawerToggle={handleToggleSideDrawer} />
       <main className={classes.Content}>
         {props.children}
       </main>
