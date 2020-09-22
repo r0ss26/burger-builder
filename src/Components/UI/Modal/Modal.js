@@ -21,9 +21,13 @@ const Modal = props => {
   );
 };
 
+const shouldUpdate = (prevProps, nextProps) => {
+  return nextProps.show === prevProps.show;
+}
+
 Modal.propTypes = {
   show: PropTypes.bool,
   toggleModal: PropTypes.func
 }
 
-export default Modal;
+export default React.memo(Modal, shouldUpdate);

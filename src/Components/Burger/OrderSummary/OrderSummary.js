@@ -3,33 +3,39 @@ import PropTypes from 'prop-types';
 
 import Button from '../../UI/Button/Button';
 
-const OrderSummary = props => {
-  const ingredientSummary = Object.keys(props.ingredients).map(igKey => {
-    return (
-      <li key={igKey}>
-        <span style={{ textTransform: 'capitalize' }}>{igKey}</span>:{' '}
-        {props.ingredients[igKey]}{' '}
-      </li>
-    );
-  });
+class OrderSummary extends React.Component {
+  componentDidUpdate() {
+    console.log('order summary updated')
+  }
 
-  return (
-    <>
-      <h3>Your Order</h3>
-      <p>A delicious burger with the following ingredients:</p>
-      <ul>{ingredientSummary}</ul>
-      <p>
-        <strong>Total Price: ${props.price.toFixed(2)}</strong>
-      </p>
-      <p>Continue to Checkout?</p>
-      <Button btnType='Danger' onClick={props.onPurchaseCancelled}>
-        CANCEL
-      </Button>
-      <Button btnType='Success' onClick={props.onPurchaseContinued}>
-        CONTINUE
-      </Button>
-    </>
-  );
+  render() {
+    const ingredientSummary = Object.keys(this.props.ingredients).map(igKey => {
+      return (
+        <li key={igKey}>
+          <span style={{ textTransform: 'capitalize' }}>{igKey}</span>:{' '}
+          {this.props.ingredients[igKey]}{' '}
+        </li>
+      );
+    });
+
+    return (
+      <>
+        <h3>Your Order</h3>
+        <p>A delicious burger with the following ingredients:</p>
+        <ul>{ingredientSummary}</ul>
+        <p>
+          <strong>Total Price: ${this.props.price.toFixed(2)}</strong>
+        </p>
+        <p>Continue to Checkout?</p>
+        <Button btnType='Danger' onClick={this.props.onPurchaseCancelled}>
+          CANCEL
+        </Button>
+        <Button btnType='Success' onClick={this.props.onPurchaseContinued}>
+          CONTINUE
+        </Button>
+      </>
+    );
+  }
 };
 
 OrderSummary.propTypes = {
