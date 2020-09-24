@@ -21,8 +21,8 @@ const Modal = props => {
   );
 };
 
-const shouldUpdate = (prevProps, nextProps) => {
-  return nextProps.show === prevProps.show;
+const isEqual = (prevProps, nextProps) => {
+  return nextProps.show === prevProps.show && nextProps.children === prevProps.children;
 }
 
 Modal.propTypes = {
@@ -30,4 +30,4 @@ Modal.propTypes = {
   toggleModal: PropTypes.func
 }
 
-export default React.memo(Modal, shouldUpdate);
+export default React.memo(Modal, isEqual);
