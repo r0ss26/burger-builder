@@ -20,15 +20,24 @@ class BurgerBuilder extends Component {
   state = {
     loading: false,
     ingredients: {
-      salad: 0,
-      bacon: 0,
-      cheese: 0,
-      meat: 0,
+      // salad: 0,
+      // bacon: 0,
+      // cheese: 0,
+      // meat: 0,
     },
     totalPrice: 4,
     purchaseable: false,
     purchasing: false,
   };
+
+  async componentDidMount() {
+    await this.getIngredients();
+  }
+
+  async getIngredients() {
+    const response = await axios.get('/ingredients.json');
+    this.setState({ingredients: response.data})
+  }
 
   toggleModal = () => {
     this.setState({ purchasing: !this.state.purchasing });
@@ -89,7 +98,7 @@ class BurgerBuilder extends Component {
     };
 
     try {
-      const response = await axios.post('/orders', order);
+      const response = await axios.post('/orders.json', order);
       console.log(response);
       this.setState({ loading: false, purchasing: false });
     } catch (error) {
